@@ -1,6 +1,6 @@
-const FlipPageButton = ({onClick}) => {
+const FlipPageButton = ({onClick, text}) => {
 	return (
-		<button onClick={onClick}>Flip the page</button>
+		<button onClick={onClick}>{text}</button>
 	);
 }
 

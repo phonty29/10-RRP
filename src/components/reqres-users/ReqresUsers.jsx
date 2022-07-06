@@ -11,6 +11,8 @@ const ReqresUsers = () => {
 	const dispatch = useDispatch();
 	const fetched = useSelector(state => state.reqresUsers.fetched);
 	const users = useSelector(state => state.reqresUsers.data);
+	const stateMessage = useSelector(state => state.reqresUsers.stateMessage);
+	const commandMessage = useSelector(state => state.reqresUsers.commandMessage);
 	useEffect(() => {
 		fetch(cookies.get(`page_${page+1}`))
 		  .then(response => response.json())
@@ -22,9 +24,9 @@ const ReqresUsers = () => {
 	return (
 		<main>
 			<section className="container">
-				<h3>Six users received</h3>
+				<h3>{stateMessage}</h3>
 				{fetched && users.map((user, index, userArray) => <Person key={user.id} imageSource={user.avatar} userEmail={user.email} userName={user.first_name + " " + user.last_name}/>)}
-				<FlipPageButton onClick={() => {setPage(page => !page)}}/>
+				<FlipPageButton onClick={() => {setPage(page => !page)}} text={commandMessage}/>
 				<ClearButton onClick={() => {dispatch(reqresUsersCleared())}}/>
 			</section>
 		</main>

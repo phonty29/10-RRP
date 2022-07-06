@@ -8,10 +8,10 @@ const routeReducer = (state = { name: 'Something else here', path: '/entry' }, a
 	}
 };
 
-const reqresUsersReducer = (state = { fetched: false, data: [] }, action) => {
+const reqresUsersReducer = (state = { fetched: false, data: [], stateMessage: "Users are receiving", commandMessage: "Fetch users" }, action) => {
 	switch (action.type) {
-		case REQRES_USERS_FETCHED: return { fetched: true, data: action.payload };
-		case REQRES_USERS_CLEARED: return { fetched: false, data: action.payload };
+		case REQRES_USERS_FETCHED: return { fetched: true, data: action.payload.data, stateMessage: action.payload.stateMessage, commandMessage: action.payload.commandMessage };
+		case REQRES_USERS_CLEARED: return { fetched: false, data: action.payload.data, stateMessage: action.payload.stateMessage, commandMessage: action.payload.commandMessage };
 		default: return state;
 	}
 };
