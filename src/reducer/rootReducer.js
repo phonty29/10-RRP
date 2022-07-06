@@ -1,18 +1,24 @@
-const initialState = {
-	number: 0
-};
+import { combineReducers } from "redux";
+import { SWITCH_ROUTE, REQRES_USERS_FETCHED, REQRES_USERS_CLEARED } from '../actions/types.js';
 
-const myReducer = (state = initialState, action) => {
+const routeReducer = (state = { name: 'Something else here', path: '/entry' }, action) => {
 	switch (action.type) {
-		case 'ADD_ONE':
-			return {...state, number: state.number + 1};
-		case 'SUB_ONE':
-			return {...state, number: state.number - 1};	
-		case 'ADD_BY':
-			return {...state, number: state.number + action.payload};					
-		default:
-			return state;
+		case SWITCH_ROUTE: return {name: action.payload.name, path: action.payload.path};				
+		default: return state;
 	}
 };
 
-export default myReducer;
+const reqresUsersReducer = (state = { fetched: false, data: [] }, action) => {
+	switch (action.type) {
+		case REQRES_USERS_FETCHED: return { fetched: true, data: action.payload };
+		case REQRES_USERS_CLEARED: return { fetched: false, data: action.payload };
+		default: return state;
+	}
+};
+
+const rootReducer = combineReducers({
+    route: routeReducer, 
+    reqresUsers: reqresUsersReducer
+});
+
+export default rootReducer;
