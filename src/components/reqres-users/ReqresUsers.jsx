@@ -1,7 +1,6 @@
 import {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {reqresUsersFetched, reqresUsersCleared} from '../../actions/actions';
-import cookies from '../../cookies/cookies';
+import {getReqresUsers, clearReqresUsers} from '../../utils/utils';
 import Person from './Person';
 import FlipPageButton from './FlipPageButton';
 import ClearButton from './ClearButton';
@@ -14,11 +13,7 @@ const ReqresUsers = () => {
 	const stateMessage = useSelector(state => state.reqresUsers.stateMessage);
 	const commandMessage = useSelector(state => state.reqresUsers.commandMessage);
 	useEffect(() => {
-		fetch(cookies.get(`page_${page+1}`))
-		  .then(response => response.json())
-		  .then(users => {
-		  	dispatch(reqresUsersFetched(users.data));
-		  });		
+		getReqresUsers(dispatch, page);
 	}, [page]);
 
 	return (
@@ -27,7 +22,7 @@ const ReqresUsers = () => {
 				<h3>{stateMessage}</h3>
 				{fetched && users.map((user, index, userArray) => <Person key={user.id} imageSource={user.avatar} userEmail={user.email} userName={user.first_name + " " + user.last_name}/>)}
 				<FlipPageButton onClick={() => {setPage(page => !page)}} text={commandMessage}/>
-				<ClearButton onClick={() => {dispatch(reqresUsersCleared())}}/>
+				<ClearButton onClick={() => {clearReqresUsers(dispatch)}}/>
 			</section>
 		</main>
 	);
