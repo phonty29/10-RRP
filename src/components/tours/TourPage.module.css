@@ -73,3 +73,20 @@
   padding: 0.25rem 0.5rem;
   border-radius: var(--radius);
 }
+.loadBtn {
+   background: hsl(205, 78%, 60%);
+   color: hsl(210, 36%, 96%);
+   width: 212px;
+   padding: 0.5rem 1rem;
+   border-radius: var(--radius);
+   text-transform: capitalize;
+   letter-spacing: var(--spacing);
+   border-color: transparent;
+   cursor: pointer;
+   margin: 1rem auto 0 auto;
+   font-size: 2rem;
+   font-weight: bold;
+}
+.loadBtn:hover {
+   background: #089dcf;
+}
