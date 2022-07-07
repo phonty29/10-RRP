@@ -1,10 +1,10 @@
 import Dropdown from './Dropdown';
 import NavigateButton from './NavigateButton';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
+import classes from './Entry.module.css';
 
 const Entry = () => {
 	return (
-		<div className="Entry">
+		<div className={classes.Entry}>
 			<Dropdown/>
 			<NavigateButton/>
 		</div>

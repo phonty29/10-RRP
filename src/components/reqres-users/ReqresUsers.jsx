@@ -4,23 +4,24 @@ import {getReqresUsers, clearReqresUsers} from '../../utils/utils';
 import Person from './Person';
 import FlipPageButton from './FlipPageButton';
 import ClearButton from './ClearButton';
+import classes from './ReqresUsers.module.css';
+import { bodyStyle } from '../../utils/utils';
 
 const ReqresUsers = () => {
 	const [page, setPage] = useState(0);
 	const dispatch = useDispatch();
-	const fetched = useSelector(state => state.reqresUsers.fetched);
-	const users = useSelector(state => state.reqresUsers.data);
-	const stateMessage = useSelector(state => state.reqresUsers.stateMessage);
-	const commandMessage = useSelector(state => state.reqresUsers.commandMessage);
+	const {fetched, users, stateMessage, commandMessage} = useSelector(state => state.reqresUsers);
 	useEffect(() => {
+	    bodyStyle.backgroundColor = '#f28ab2';
+	    bodyStyle.color = 'hsl(209, 61%, 16%)';
 		getReqresUsers(dispatch, page);
 	}, [page]);
 
 	return (
-		<main>
-			<section className="container">
+		<main className={classes.main}>
+			<section className={classes.container}>
 				<h3>{stateMessage}</h3>
-				{fetched && users.map((user, index, userArray) => <Person key={user.id} imageSource={user.avatar} userEmail={user.email} userName={user.first_name + " " + user.last_name}/>)}
+				{fetched && users.map((user, index, userArray) => <Person key={user.id} imageSource={user.avatar} userEmail={user.email} userName={user.first_name + " " + user.last_name} className={classes.person}/>)}
 				<FlipPageButton onClick={() => {setPage(page => !page)}} text={commandMessage}/>
 				<ClearButton onClick={() => {clearReqresUsers(dispatch)}}/>
 			</section>

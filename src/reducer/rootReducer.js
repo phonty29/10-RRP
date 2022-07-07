@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { SWITCH_ROUTE, REQRES_USERS_FETCHED, REQRES_USERS_CLEARED } from '../actions/types.js';
+import { SWITCH_ROUTE, REQRES_USERS_FETCHED, REQRES_USERS_CLEARED, TOURS_TWITCHED, TOURS_EMPTY } from '../actions/types.js';
 
 const routeReducer = (state = { name: 'Something else here', path: '/entry' }, action) => {
 	switch (action.type) {
@@ -8,17 +8,26 @@ const routeReducer = (state = { name: 'Something else here', path: '/entry' }, a
 	}
 };
 
-const reqresUsersReducer = (state = { fetched: false, data: [], stateMessage: "Users are receiving", commandMessage: "Fetch users" }, action) => {
+const reqresUsersReducer = (state = { fetched: false, users: [], stateMessage: "Users are receiving", commandMessage: "Fetch users" }, action) => {
 	switch (action.type) {
-		case REQRES_USERS_FETCHED: return { fetched: true, data: action.payload.data, stateMessage: action.payload.stateMessage, commandMessage: action.payload.commandMessage };
-		case REQRES_USERS_CLEARED: return { fetched: false, data: action.payload.data, stateMessage: action.payload.stateMessage, commandMessage: action.payload.commandMessage };
+		case REQRES_USERS_FETCHED: return { fetched: true, users: action.payload.data, stateMessage: action.payload.stateMessage, commandMessage: action.payload.commandMessage };
+		case REQRES_USERS_CLEARED: return { fetched: false, users: action.payload.data, stateMessage: action.payload.stateMessage, commandMessage: action.payload.commandMessage };
+		default: return state;
+	}
+};
+
+const toursReducer = (state = { loading: true, tours: [] }, action) => {
+	switch (action.type) {
+		case TOURS_TWITCHED: return { loading: false, tours: action.payload };
+		case TOURS_EMPTY: return { loading: false, tours: [] };
 		default: return state;
 	}
 };
 
 const rootReducer = combineReducers({
     route: routeReducer, 
-    reqresUsers: reqresUsersReducer
+    reqresUsers: reqresUsersReducer,
+    tours: toursReducer
 });
 
 export default rootReducer;
