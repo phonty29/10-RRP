@@ -10,7 +10,7 @@ const Tours = () => {
 	const dispatch = useDispatch();
 	const {loading, tours} = useSelector(state => state.tours);
 	useEffect(() => {
-		getTours(dispatch);
+		dispatch(getTours());
 	}, [loadAgain]);
 
 	return (

@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { SWITCH_ROUTE, REQRES_USERS_FETCHED, REQRES_USERS_CLEARED, TOURS_TWITCHED, TOURS_EMPTY } from '../actions/types.js';
+import { SWITCH_ROUTE, REQRES_USERS_FETCHED, REQRES_USERS_CLEARED, TOURS_TWITCHED, TOURS_EMPTY, SWITCH_REVIEWER } from '../actions/types.js';
 
 const routeReducer = (state = { name: 'Something else here', path: '/entry' }, action) => {
 	switch (action.type) {
@@ -24,10 +24,18 @@ const toursReducer = (state = { loading: true, tours: [] }, action) => {
 	}
 };
 
+const reviewReducer = (state = { fetched: false, reviewer: {}, role: "", review: "" }, action) => {
+	switch (action.type) {
+		case SWITCH_REVIEWER: return { fetched: true, reviewer: action.payload.reviewer, role: action.payload.role, review: action.payload.review };
+		default: return state;
+	}
+};
+
 const rootReducer = combineReducers({
     route: routeReducer, 
     reqresUsers: reqresUsersReducer,
-    tours: toursReducer
+    tours: toursReducer,
+    review: reviewReducer
 });
 
 export default rootReducer;

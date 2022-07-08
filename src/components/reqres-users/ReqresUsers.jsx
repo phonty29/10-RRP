@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {getReqresUsers, clearReqresUsers} from '../../utils/utils';
+import {getReqresUsers} from '../../utils/utils';
+import {reqresUsersCleared} from '../../actions/actions';
 import Person from './Person';
 import FlipPageButton from './FlipPageButton';
 import ClearButton from './ClearButton';
@@ -14,7 +15,7 @@ const ReqresUsers = () => {
 	useEffect(() => {
 	    bodyStyle.backgroundColor = '#f28ab2';
 	    bodyStyle.color = 'hsl(209, 61%, 16%)';
-		getReqresUsers(dispatch, page);
+		dispatch(getReqresUsers(page));
 	}, [page]);
 
 	return (
@@ -23,7 +24,7 @@ const ReqresUsers = () => {
 				<h3>{stateMessage}</h3>
 				{fetched && users.map((user, index, userArray) => <Person key={user.id} imageSource={user.avatar} userEmail={user.email} userName={user.first_name + " " + user.last_name} className={classes.person}/>)}
 				<FlipPageButton onClick={() => {setPage(page => !page)}} text={commandMessage}/>
-				<ClearButton onClick={() => {clearReqresUsers(dispatch)}}/>
+				<ClearButton onClick={() => {dispatch(reqresUsersCleared())}}/>
 			</section>
 		</main>
 	);

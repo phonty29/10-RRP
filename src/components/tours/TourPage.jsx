@@ -1,7 +1,6 @@
 import {useEffect} from 'react';
-import Title from './Title';
+import Title from '../GLOBALS/Title';
 import Tours from './Tours';
-import Loading from './Loading';
 import classes from './TourPage.module.css';
 import { bodyStyle } from '../../utils/utils';
 
@@ -13,7 +12,7 @@ const TourPage = () => {
 	return (
 		<main className={classes.main}>
 			<section>
-				<Title classNames={{title: classes.title, underline: classes.underline}}/>
+				<Title classNames={{title: classes.title, underline: classes.underline}} titleText={"Our tours"}/>
 				<Tours/>
 			</section>
 		</main>
