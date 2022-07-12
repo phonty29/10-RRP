@@ -50,4 +50,10 @@ export function getReviewer(index) {
 	}
 }
 
+export const accordionDefaultStyle = {
+	transition: 'max-height 300ms ease-in-out',
+	overflow: 'hidden',
+	maxHeight: 0,		
+};
+
 
