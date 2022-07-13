@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { SWITCH_ROUTE, REQRES_USERS_FETCHED, REQRES_USERS_CLEARED, TOURS_TWITCHED, TOURS_EMPTY, SWITCH_REVIEWER } from '../actions/types.js';
+import { SWITCH_ROUTE, REQRES_USERS_FETCHED, REQRES_USERS_CLEARED, TOURS_TWITCHED, TOURS_EMPTY, SWITCH_REVIEWER, SHOW_ALL, BREAKFAST_REMAINED, LUNCH_REMAINED, SHAKES_REMAINED } from '../actions/types.js';
 
 const routeReducer = (state = { name: 'Something else here', path: '/entry' }, action) => {
 	switch (action.type) {
@@ -31,11 +31,22 @@ const reviewReducer = (state = { fetched: false, reviewer: {}, role: "", review:
 	}
 };
 
+const menuReducer = (state = { menu: [] }, action) => {
+	switch (action.type) {
+		case SHOW_ALL: return { menu: action.payload.menu.map((menuItem, index, array) => ({...menuItem})) };
+		case BREAKFAST_REMAINED: return { menu: action.payload.menu.filter((menuItem, index, array) => { if (menuItem.category == 'breakfast') return {...menuItem} })};
+		case LUNCH_REMAINED: return { menu: action.payload.menu.filter((menuItem, index, array) => { if (menuItem.category == 'lunch') return {...menuItem} })};
+		case SHAKES_REMAINED: return { menu: action.payload.menu.filter((menuItem, index, array) => { if (menuItem.category == 'shakes') return {...menuItem} })};
+		default: return state;
+	}
+};
+
 const rootReducer = combineReducers({
     route: routeReducer, 
     reqresUsers: reqresUsersReducer,
     tours: toursReducer,
-    review: reviewReducer
+    review: reviewReducer,
+    menu: menuReducer
 });
 
 export default rootReducer;

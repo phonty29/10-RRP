@@ -56,4 +56,77 @@ export const accordionDefaultStyle = {
 	maxHeight: 0,		
 };
 
-
+export const MENU_ITEMS = [
+	  {
+    id: 1,
+    title: 'buttermilk pancakes',
+    category: 'breakfast',
+    price: 15.99,
+    img: 'https://react-projects-5-menu.netlify.app/images/item-1.jpeg',
+    text: ''
+  },
+  {
+    id: 2,
+    title: 'diner double',
+    category: 'lunch',
+    price: 13.99,
+    img: 'https://react-projects-5-menu.netlify.app/images/item-2.jpeg',
+    text: ''
+  },
+  {
+    id: 3,
+    title: 'godzilla milkshake',
+    category: 'shakes',
+    price: 6.99,
+    img: 'https://react-projects-5-menu.netlify.app/images/item-3.jpeg',
+    text: ''
+  },
+  {
+    id: 4,
+    title: 'country delight',
+    category: 'breakfast',
+    price: 20.99,
+    img: 'https://react-projects-5-menu.netlify.app/images/item-4.jpeg',
+    text: ''
+  },
+  {
+    id: 5,
+    title: 'egg attack',
+    category: 'lunch',
+    price: 22.99,
+    img: 'https://react-projects-5-menu.netlify.app/images/item-5.jpeg',
+    text: ''
+  },
+  {
+    id: 6,
+    title: 'oreo dream',
+    category: 'shakes',
+    price: 18.99,
+    img: 'https://react-projects-5-menu.netlify.app/images/item-6.jpeg',
+    text: ''
+  },
+  {
+    id: 7,
+    title: 'bacon overflow',
+    category: 'breakfast',
+    price: 8.99,
+    img: 'https://react-projects-5-menu.netlify.app/images/item-7.jpeg',
+    text: ''
+  },
+  {
+    id: 8,
+    title: 'american classic',
+    category: 'lunch',
+    price: 12.99,
+    img: 'https://react-projects-5-menu.netlify.app/images/item-8.jpeg',
+    text: ''
+  },
+  {
+    id: 9,
+    title: 'quarantine buddy',
+    category: 'shakes',
+    price: 16.99,
+    img: 'https://react-projects-5-menu.netlify.app/images/item-9.jpeg',
+    text: ''
+  },
+];
