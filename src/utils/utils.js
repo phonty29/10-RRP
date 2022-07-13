@@ -1,6 +1,6 @@
 import axios from 'axios';
 import cookies from '../cookies/cookies';
-import {reqresUsersFetched, toursTwitched, switchReviewer} from '../actions/actions';
+import {reqresUsersFetched, toursTwitched, switchReviewer, showAllMenu} from '../actions/actions';
 
 const reviewer_roles = ['web designer', 'web developer', 'intern', 'boss', 'Software developer', 'IT project managers'];
 const reviewer_reviews = [
@@ -15,8 +15,8 @@ const reviewer_reviews = [
 export function getReqresUsers(page) {
 	return async function(dispatch) {
 		try {
-			const response = await axios.get(cookies.get(`page_${page+1}`));
-			const users = response.data;
+			let response = await axios.get(cookies.get(`page_${page+1}`));
+			let users = response.data;
 			dispatch(reqresUsersFetched(users.data));    
 		} catch (error) {
 			console.error(error);
@@ -29,8 +29,8 @@ export const bodyStyle = document.body.style;
 export function getTours() {
 	return async function(dispatch) {
 		try { 
-			const response = await axios.get(cookies.get('tours'));
-			const tours = response.data;
+			let response = await axios.get(cookies.get('tours'));
+			let tours = response.data;
 			dispatch(toursTwitched(tours));  		
 		} catch (error) {
 			console.error(error);
@@ -41,8 +41,8 @@ export function getTours() {
 export function getReviewer(index) {
 	return async function(dispatch) {
 		try {
-			const response = await axios.get(cookies.get(`page_1`));
-			const reviewers = response.data;
+			let response = await axios.get(cookies.get(`page_1`));
+			let reviewers = response.data;
 			dispatch(switchReviewer(reviewers.data[index], reviewer_roles[index], reviewer_reviews[index]));    
 		} catch (error) {
 			console.error(error);
@@ -130,3 +130,20 @@ export const MENU_ITEMS = [
     text: ''
   },
 ];
+
+export function getBaconIpsumText() {
+  return async function(dispatch) {
+    try {
+      let response = await axios.get(cookies.get('baconIpsumText'));
+      let text = response.data;
+      let texts = text.split("\n\n");
+      texts.forEach((text, index, array) => {
+        MENU_ITEMS[index].text = `${text.substring(0, 100)}...`;
+      });
+      dispatch(showAllMenu(MENU_ITEMS));    
+    } catch (error) {
+      console.error(error);
+    } 
+  }
+}
+

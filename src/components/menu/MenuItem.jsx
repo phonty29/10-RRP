@@ -10,7 +10,7 @@ const MenuItem = ({item}) => {
 					<h4 className={classes.price}>${item.price}</h4>
 				</header>	
 				<p className={classes.itemText}>
-					I'm baby woke mlkshk wolf bitters live-edge blue bottle, hammock freegan copper mug whatever cold-pressed 
+					{item.text}
 				</p>
 			</div>
 		</article>
