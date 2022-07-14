@@ -12,7 +12,7 @@ const Dropdown = () => {
 		  <ul className="dropdown-menu" aria-labelledby="dropdownMenu2">
 		    {
 		    	routes.map((route, index, array) => {
-		    		return <li key={index}><button className="dropdown-item" type="button" onClick={() => {dispatch(switchRoute(route))}}>{route.name}</button></li>;
+		    		return <li key={index}><button className="dropdown-item" type="button" onClick={() => {dispatch(switchRoute({name: route.name, path: route.path}))}}>{route.name}</button></li>;
 		    	})
 		    }
 		  </ul>

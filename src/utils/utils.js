@@ -1,9 +1,10 @@
 import axios from 'axios';
 import cookies from '../cookies/cookies';
 import {reqresUsersFetched, toursTwitched, switchReviewer, showAllMenu} from '../actions/actions';
+import { sliderReviewersFetched } from '../slices/slices';
 
-const reviewer_roles = ['web designer', 'web developer', 'intern', 'boss', 'Software developer', 'IT project managers'];
-const reviewer_reviews = [
+export const reviewer_roles = ['web designer', 'web developer', 'intern', 'boss', 'Software developer', 'IT project managers'];
+export const reviewer_reviews = [
  'Helvetica artisan kinfolk thundercats lumbersexual blue bottle. Disrupt glossier gastropub deep v vice franzen hell of brooklyn twee enamel pin fashion axe.photo booth jean shorts artisan narwhal.',
  'Sriracha literally flexitarian irony, vape marfa unicorn. Glossier tattooed 8-bit, fixie waistcoat offal activated charcoal slow-carb marfa hell of pabst raclette post-ironic jianbing swag.',
  'Edison bulb put a bird on it humblebrag, marfa pok pok heirloom fashion axe cray stumptown venmo actually seitan. VHS farm-to-table schlitz, edison bulb pop-up 3 wolf moon tote bag street art shabby chic. ',
@@ -146,4 +147,24 @@ export function getBaconIpsumText() {
     } 
   }
 }
+
+export function getReviewersForSlider() {
+  return async function(dispatch) {
+    try {
+			let response = await axios.get(cookies.get(`page_1`));
+			let persons = response.data.data;
+			dispatch(sliderReviewersFetched({persons: persons}));   
+    } catch (error) {
+      console.error(error);
+    }
+  }
+};
+
+export function getRightClassnameForSlider(index, last, classes) {
+  switch(index) {
+    case 0: return classes.activeSlide;
+    case last: return classes.lastSlide;
+    default: return classes.nextSlide;
+  }
+};
 
