@@ -1,6 +1,10 @@
 import { combineReducers } from "redux";
 import { SWITCH_ROUTE, REQRES_USERS_FETCHED, REQRES_USERS_CLEARED, TOURS_TWITCHED, TOURS_EMPTY, SWITCH_REVIEWER, SHOW_ALL, BREAKFAST_REMAINED, LUNCH_REMAINED, SHAKES_REMAINED } from '../actions/types.js';
+<<<<<<< HEAD
 import {sliderReducer} from '../slicers/slicers';
+=======
+import { sliderReducer } from "../slices/slices.js";
+>>>>>>> 46e6ced37d9bc51216018d0bdf8cb525d45145b4
 
 const routeReducer = (state = { name: 'Something else here', path: '/entry' }, action) => {
 	switch (action.type) {
@@ -48,7 +52,11 @@ const rootReducer = combineReducers({
     tours: toursReducer,
     review: reviewReducer,
     menu: menuReducer,
+<<<<<<< HEAD
     slider: sliderReducer
+=======
+	slider: sliderReducer
+>>>>>>> 46e6ced37d9bc51216018d0bdf8cb525d45145b4
 });
 
 export default rootReducer;
