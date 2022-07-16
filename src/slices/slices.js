@@ -23,7 +23,21 @@ export const sliderSlice = createSlice({
         }        
     }
 });
-
 export const {sliderReviewersFetched, nextSlide, prevSlide} = sliderSlice.actions;
-
 export const sliderReducer = sliderSlice.reducer;
+
+export const textGeneratorSlice = createSlice({
+    name: "textGenerator",
+    initialState: {
+        numberOfParagraphs: 0,
+        paragraphs: []
+    },
+    reducers: {
+        setParagraphs: (state, action) => {
+            state.numberOfParagraphs = action.payload.number;
+            state.paragraphs = action.payload.paragraphs;
+        }
+    }
+});
+export const {setParagraphs} = textGeneratorSlice.actions;
+export const textGeneratorReducer = textGeneratorSlice.reducer;

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import cookies from '../cookies/cookies';
 import {reqresUsersFetched, toursTwitched, switchReviewer, showAllMenu} from '../actions/actions';
-import { sliderReviewersFetched, nextSlide } from '../slices/slices';
+import { sliderReviewersFetched, nextSlide, setParagraphs } from '../slices/slices';
 
 export const reviewer_roles = ['web designer', 'web developer', 'intern', 'boss', 'Software developer', 'IT project managers'];
 export const reviewer_reviews = [
@@ -171,3 +171,15 @@ export function getPrevSlider(index, lastIndex, classes, array) {
     return classes.nextSlide;
   }
 };
+
+export function getBoremIpsumText(numberOfParagraphs) {
+  return async function(dispatch) {
+    try {
+      let response = await axios.get(`https://baconipsum.com/api/?type=meat-and-filler&paras=${numberOfParagraphs > 10 ? 10 : numberOfParagraphs}&format=text`);
+      let texts = response.data.split("\n\n");
+      dispatch(setParagraphs({number: numberOfParagraphs, paragraphs: texts}));
+    } catch (error) {
+      console.error(error);
+    } 
+  }  
+}
