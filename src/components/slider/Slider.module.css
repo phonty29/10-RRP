@@ -106,7 +106,7 @@
       font-size: 1.5rem;
     }
   }
-  article {
+  .article {
     position: absolute;
     top: 0;
     left: 0;
@@ -115,13 +115,13 @@
     opacity: 0;
     transition: var(--transition);
   }
-  article.activeSlide {
+  .article.activeSlide {
     opacity: 1;
     transform: translateX(0);
   }
-  article.lastSlide {
+  .article.lastSlide {
     transform: translateX(-100%);
   }
-  article.nextSlide {
+  .article.nextSlide {
     transform: translateX(100%);
   }

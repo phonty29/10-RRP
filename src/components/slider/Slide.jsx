@@ -7,7 +7,7 @@ const Slide = (props) => {
     const {className, imageSource,fullName, role, review} = {...props};
 
 	return (
-        <article className={className}>
+        <article className={`${className} ${classes.article}`}>
             <img src={imageSource} alt={fullName} className={classes.personImg}/>
             <h4>{fullName}</h4>
             <p className={classes.title}>{role}</p>

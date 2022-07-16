@@ -64,7 +64,7 @@ export const MENU_ITEMS = [
     category: 'breakfast',
     price: 15.99,
     img: 'https://react-projects-5-menu.netlify.app/images/item-1.jpeg',
-    text: ''
+    text: 'Chislic ham hock landjaeger hamburger brisket. Tri-tip turkey ham hock picanha tongue.'
   },
   {
     id: 2,
@@ -72,7 +72,7 @@ export const MENU_ITEMS = [
     category: 'lunch',
     price: 13.99,
     img: 'https://react-projects-5-menu.netlify.app/images/item-2.jpeg',
-    text: ''
+    text: 'Bacon ipsum dolor amet sausage tongue kevin chuck alcatra strip steak pork chop jerky. Drumstick pastrami brisket venison frankfurter.'
   },
   {
     id: 3,
@@ -80,7 +80,7 @@ export const MENU_ITEMS = [
     category: 'shakes',
     price: 6.99,
     img: 'https://react-projects-5-menu.netlify.app/images/item-3.jpeg',
-    text: ''
+    text: 'Kielbasa boudin capicola, short ribs meatloaf biltong chislic. Meatloaf kielbasa beef ribs, leberkas ham sausage buffalo turducken chuck kevin prosciutto rump.'
   },
   {
     id: 4,
@@ -88,7 +88,7 @@ export const MENU_ITEMS = [
     category: 'breakfast',
     price: 20.99,
     img: 'https://react-projects-5-menu.netlify.app/images/item-4.jpeg',
-    text: ''
+    text: 'Landjaeger buffalo salami, tail kielbasa biltong andouille shoulder tenderloin boudin jerky. Pork chop beef meatball jowl sirloin.'
   },
   {
     id: 5,
@@ -96,7 +96,7 @@ export const MENU_ITEMS = [
     category: 'lunch',
     price: 22.99,
     img: 'https://react-projects-5-menu.netlify.app/images/item-5.jpeg',
-    text: ''
+    text: 'Swine ham pastrami rump tenderloin venison meatloaf shoulder landjaeger short loin strip steak pig pork chop pancetta.'
   },
   {
     id: 6,
@@ -104,7 +104,7 @@ export const MENU_ITEMS = [
     category: 'shakes',
     price: 18.99,
     img: 'https://react-projects-5-menu.netlify.app/images/item-6.jpeg',
-    text: ''
+    text: 'Capicola pork chop swine corned beef drumstick. Alcatra sirloin landjaeger pork loin prosciutto, andouille flank spare ribs'
   },
   {
     id: 7,
@@ -112,7 +112,7 @@ export const MENU_ITEMS = [
     category: 'breakfast',
     price: 8.99,
     img: 'https://react-projects-5-menu.netlify.app/images/item-7.jpeg',
-    text: ''
+    text: 'Frankfurter chislic shank, sirloin pork loin tail bresaola chicken salami fatback beef doner short ribs brisket.'
   },
   {
     id: 8,
@@ -120,7 +120,7 @@ export const MENU_ITEMS = [
     category: 'lunch',
     price: 12.99,
     img: 'https://react-projects-5-menu.netlify.app/images/item-8.jpeg',
-    text: ''
+    text: 'Alcatra turducken chislic bresaola flank strip steak tongue tri-tip corned beef ham hock frankfurter ground round drumstick.'
   },
   {
     id: 9,
@@ -128,25 +128,9 @@ export const MENU_ITEMS = [
     category: 'shakes',
     price: 16.99,
     img: 'https://react-projects-5-menu.netlify.app/images/item-9.jpeg',
-    text: ''
+    text: 'Doner beef ribs swine tri-tip flank, ground round kielbasa frankfurter short loin. '
   },
 ];
-
-export function getBaconIpsumText() {
-  return async function(dispatch) {
-    try {
-      let response = await axios.get(cookies.get('baconIpsumText'));
-      let text = response.data;
-      let texts = text.split("\n\n");
-      texts.forEach((text, index, array) => {
-        MENU_ITEMS[index].text = `${text.substring(0, 100)}...`;
-      });
-      dispatch(showAllMenu(MENU_ITEMS));    
-    } catch (error) {
-      console.error(error);
-    } 
-  }
-}
 
 export function getReviewersForSlider() {
   return async function(dispatch) {
@@ -162,7 +146,7 @@ export function getReviewersForSlider() {
 
 export function getInitialClassnamesForSlider(index, last, classes) {
   switch(index) {
-    case 0: return classes.activeSlide;
+    case 0: return classes.activeSlide; 
     case last: return classes.lastSlide;
     default: return classes.nextSlide;
   }
