@@ -1,7 +1,7 @@
 import axios from 'axios';
 import cookies from '../cookies/cookies';
 import {reqresUsersFetched, toursTwitched, switchReviewer, showAllMenu} from '../actions/actions';
-import { sliderReviewersFetched } from '../slices/slices';
+import { sliderReviewersFetched, nextSlide } from '../slices/slices';
 
 export const reviewer_roles = ['web designer', 'web developer', 'intern', 'boss', 'Software developer', 'IT project managers'];
 export const reviewer_reviews = [
@@ -160,7 +160,7 @@ export function getReviewersForSlider() {
   }
 };
 
-export function getRightClassnameForSlider(index, last, classes) {
+export function getInitialClassnamesForSlider(index, last, classes) {
   switch(index) {
     case 0: return classes.activeSlide;
     case last: return classes.lastSlide;
@@ -168,3 +168,22 @@ export function getRightClassnameForSlider(index, last, classes) {
   }
 };
 
+export function getNextSlider(index, lastIndex, classes, array) {
+  if (array[index].className == classes.activeSlide) {
+    return classes.lastSlide;
+  } else if ( (index > 0 && array[index - 1].className == classes.activeSlide) || (index == 0 && array[lastIndex].className == classes.activeSlide) ) {
+    return classes.activeSlide;
+  } else {
+    return classes.nextSlide;
+  }
+};
+
+export function getPrevSlider(index, lastIndex, classes, array) {
+  if (array[index].className == classes.lastSlide) {
+    return classes.activeSlide;
+  } else if ( (index < lastIndex && array[index + 1].className == classes.lastSlide) || (index == lastIndex && array[0].className == classes.lastSlide) ) {
+    return classes.lastSlide;
+  } else {
+    return classes.nextSlide;
+  }
+};

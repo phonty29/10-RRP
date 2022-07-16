@@ -1,6 +1,7 @@
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { getReviewersForSlider } from '../../utils/utils';
+import {nextSlide} from '../../slices/slices';
 import Slide from './Slide';
 import SliderButtons from './SliderButtons';
 
@@ -8,8 +9,17 @@ const SliderBody = ({className}) => {
     const dispatch = useDispatch();
     const {fetched, reviewers} = useSelector(state => state.slider);
     useEffect(() => {
-        dispatch(getReviewersForSlider());    
-    }, []);
+        if (fetched) {
+            let interval = setInterval(() => {
+              dispatch(nextSlide());
+            }, 3000);
+            return () => {
+              clearInterval(interval);
+            };            
+        }
+        else 
+            dispatch(getReviewersForSlider());    
+    }, [reviewers]);
 
 	return (
         <div className={className}>
