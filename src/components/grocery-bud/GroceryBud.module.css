@@ -1,0 +1,152 @@
+.section {
+  padding: 5rem 0;
+}
+
+.sectionCenter {
+  width: 90vw;
+  margin: 0 auto;
+  max-width: 35rem;
+  margin-top: 8rem;
+}
+@media screen and (min-width: 992px) {
+  .sectionCenter {
+    width: 95vw;
+  }
+}
+.sectionCenter {
+    background: #fff;
+    border-radius: 0.25rem;
+    box-shadow: 0 5px 15px rgb(0 0 0 / 10%);
+    transition: all .3s linear;
+    padding: 2rem;
+}
+.sectionCenter:hover {
+  box-shadow: 0 5px 15px rgb(0 0 0 / 20%);
+}
+.alert {
+  margin-bottom: 1rem;
+  height: 1.25rem;
+  display: grid;
+  align-items: center;
+  text-align: center;
+  font-size: 0.7rem;
+  border-radius: 0.25rem;
+  letter-spacing: var(--spacing);
+  text-transform: capitalize;
+}
+.alertDanger {
+  color: #721c24;
+  background: #f8d7da;
+}
+.alertSuccess {
+  color: #155724;
+  background: #d4edda;
+}
+.groceryForm h3 {
+  color: #063251;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.formControl {
+  display: flex;
+  justify-content: center;
+}
+.grocery {
+    padding: 0.25rem 0.25rem 0.25rem 1rem;
+    background: #f1f5f8;
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+    border-color: transparent;
+    font-size: 1rem;
+    flex: 1 0 auto;
+    color: #617d98;
+}
+.grocery::placeholder {
+  font-family: var(--ff-secondary);
+  color: #617d98;
+}
+.submitBtn {
+    background: #a5d5f8;
+    border-color: transparent;
+    flex: 0 0 5rem;
+    display: grid;
+    align-items: center;
+    padding: 0.25rem;
+    text-transform: capitalize;
+    letter-spacing: 2px;
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+    cursor: pointer;
+    content: #49a6e9;
+    transition: all .3s linear;
+    font-size: .85rem;
+}
+.submitBtn:hover {
+    background: #49a6e9;
+    color: #fff;
+}
+.groceryContainer {
+  margin-top: 2rem;
+}
+.groceryItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  transition: var(--transition);
+  padding: 0.25rem 1rem;
+  border-radius: var(--radius);
+  text-transform: capitalize;
+}
+.groceryItem:hover {
+  color: #617d98;
+  background: #f1f5f8;
+}
+.groceryItem:hover .title {
+  color: #617d98;
+}
+.title {
+  margin-bottom: 0;
+  color: #102a42;
+  letter-spacing: 2px;
+  transition: var(--transition);
+}
+.editBtn,
+.deleteBtn {
+  background: transparent;
+  border-color: transparent;
+  cursor: pointer;
+  font-size: 0.7rem;
+  margin: 0 0.15rem;
+  transition: var(--transition);
+}
+.editBtn {
+  color: #6be675;
+}
+.editBtn:hover {
+  color: #25bb32;
+}
+.deleteBtn {
+  color: #e66b6b;
+}
+.deleteBtn:hover {
+  color: #bb2525;
+}
+.clearBtn {
+    text-transform: capitalize;
+    width: 10rem;
+    height: 1.5rem;
+    display: grid;
+    align-items: center;
+    background: transparent;
+    border-color: transparent;
+    color: #e66b6b;
+    font-size: .85rem;
+    letter-spacing: .1rem;
+    cursor: pointer;
+    transition: all .3s linear;
+    margin: 1.25rem auto 0;
+}
+.clearBtn:hover {
+  color: #bb2525;
+}

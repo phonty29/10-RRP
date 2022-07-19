@@ -26,6 +26,7 @@ export const sliderSlice = createSlice({
 export const {sliderReviewersFetched, nextSlide, prevSlide} = sliderSlice.actions;
 export const sliderReducer = sliderSlice.reducer;
 
+
 export const textGeneratorSlice = createSlice({
     name: "textGenerator",
     initialState: {
@@ -41,3 +42,31 @@ export const textGeneratorSlice = createSlice({
 });
 export const {setParagraphs} = textGeneratorSlice.actions;
 export const textGeneratorReducer = textGeneratorSlice.reducer;
+
+
+export const groceryBudSlice = createSlice({
+    name: "groceryBud", 
+    initialState: {
+        buds: [],
+        buttonState: "submit",
+        itemIndex: 0,
+        itemValue: "",
+        alertMessage: "",
+        alertType: ""
+    },
+    reducers: {
+        fetchItems: (state, action) => {
+            state.buds = action.payload.buds;
+            state.buttonState = "submit";
+            state.alertMessage = action.payload.alertMessage;
+            state.alertType = action.payload.alertType;
+        },
+        editItem: (state, action) => {
+            state.buttonState = "edit";
+            state.itemIndex = action.payload.index;
+            state.itemValue = action.payload.value;
+        }
+    }
+});
+export const {fetchItems, editItem} = groceryBudSlice.actions;
+export const groceryBudReducer = groceryBudSlice.reducer;

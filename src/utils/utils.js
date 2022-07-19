@@ -1,7 +1,7 @@
 import axios from 'axios';
 import cookies from '../cookies/cookies';
 import {reqresUsersFetched, toursTwitched, switchReviewer, showAllMenu} from '../actions/actions';
-import { sliderReviewersFetched, nextSlide, setParagraphs } from '../slices/slices';
+import { sliderReviewersFetched, nextSlide, setParagraphs, fetchItems } from '../slices/slices';
 
 export const reviewer_roles = ['web designer', 'web developer', 'intern', 'boss', 'Software developer', 'IT project managers'];
 export const reviewer_reviews = [
@@ -182,4 +182,49 @@ export function getBoremIpsumText(numberOfParagraphs) {
       console.error(error);
     } 
   }  
+}
+
+export function fetchFirebaseItems(alertMessage="", alertType="") {
+  return async function(dispatch) {
+    try { 
+      let response = await axios.get('https://grocery-bud-e96cb-default-rtdb.europe-west1.firebasedatabase.app/tobuy-list.json');
+      if (!response.data) {dispatch(fetchItems({buds: []})); return;}
+      let buds = Object.entries(response.data).map((element, index, array) => ({id: element[0], item: element[1].item}));
+      dispatch(fetchItems({buds: buds, alertMessage: alertMessage, alertType: alertType}));
+    } catch (error) {
+      console.error(error);
+    }  
+  }
+}
+
+export async function postFirebaseItem(item) {
+  try { 
+    await axios.post('https://grocery-bud-e96cb-default-rtdb.europe-west1.firebasedatabase.app/tobuy-list.json', {item: item});
+  } catch (error) {
+    console.error(error);
+  } 
+}
+
+export async function removeFirebaseItem(index, array) {
+    try {
+      await axios.delete(`https://grocery-bud-e96cb-default-rtdb.europe-west1.firebasedatabase.app/tobuy-list/${array[index].id}.json`);
+    } catch (error) {
+      console.error(error);
+    } 
+}
+
+export async function editFirebaseItem(array, index, newValue) {
+  try {
+    await axios.put(`https://grocery-bud-e96cb-default-rtdb.europe-west1.firebasedatabase.app/tobuy-list/${array[index].id}.json`, {item: newValue});
+  } catch (error) {
+    console.error(error);
+  } 
+}
+
+export async function clearFirebaseItems(index, array) {
+    try {
+      await axios.delete(`https://grocery-bud-e96cb-default-rtdb.europe-west1.firebasedatabase.app/tobuy-list.json`);
+    } catch (error) {
+      console.error(error);
+    } 
 }

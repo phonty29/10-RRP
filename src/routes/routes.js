@@ -5,6 +5,7 @@ import Menu from '../components/menu/Menu';
 import Accordion from '../components/accordion/Accordion';
 import Slider from '../components/slider/Slider';
 import TextGenerator from '../components/textGenerator/TextGenerator';
+import GroceryBud from '../components/grocery-bud/GroceryBud';
 import Entry from '../components/Entry';
 
 const routes = [
@@ -15,6 +16,7 @@ const routes = [
 	{name: 'Menu', path: '/menu', element: <Menu/>, exact: true},
 	{name: 'Slider', path: '/slider', element: <Slider/>, exact: true},
 	{name: 'Text Generator', path: '/textGenerator', element: <TextGenerator/>, exact: true},
+	{name: 'Grocery Bud', path: '/groceryBud', element: <GroceryBud/>, exact: true},
 	{name: 'Something else here', path: '/entry', element: <Entry/>, exact: true}
 ];
 
