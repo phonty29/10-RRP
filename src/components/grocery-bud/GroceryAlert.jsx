@@ -1,12 +1,14 @@
 import {useEffect} from 'react';
 import {useSelector} from 'react-redux';
+import {useGroceryBudContext} from './GroceryBudProvider';
 import classes from './GroceryBud.module.css';
 
-const GroceryAlert = ({setVisibility}) => {
+const GroceryAlert = () => {
 	const {alertMessage, alertType} = useSelector(state => state.groceryBud);
+	const {makeAlertHidden} = useGroceryBudContext();
 	useEffect(() => {
 	    const timeout = setTimeout(() => {
-	      setVisibility(false);
+	      makeAlertHidden();
 	    }, 1500);
 	    return () => clearTimeout(timeout);		
 	}, []);

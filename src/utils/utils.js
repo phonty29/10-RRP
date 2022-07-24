@@ -1,5 +1,6 @@
 import axios from 'axios';
 import cookies from '../cookies/cookies';
+import { FaCreditCard, FaBook, FaBriefcase } from 'react-icons/fa';
 import {reqresUsersFetched, toursTwitched, switchReviewer, showAllMenu} from '../actions/actions';
 import { sliderReviewersFetched, nextSlide, setParagraphs, fetchItems } from '../slices/slices';
 
@@ -228,3 +229,51 @@ export async function clearFirebaseItems(index, array) {
       console.error(error);
     } 
 }
+
+export const sublinks = [
+  {
+    page: 'products',
+    links: [
+      { label: 'payment', icon: 'FaCreditCard', url: 'https://react-projects-13-stripe-submenus.netlify.app/products' },
+      { label: 'terminal', icon: 'FaCreditCard', url: 'https://react-projects-13-stripe-submenus.netlify.app/products' },
+      { label: 'connect', icon: 'FaCreditCard', url: 'https://react-projects-13-stripe-submenus.netlify.app/products' },
+    ],
+    columns: 3
+  },
+  {
+    page: 'developers',
+    links: [
+      { label: 'plugins', icon: 'FaBook', url: 'https://react-projects-13-stripe-submenus.netlify.app/products' },
+      { label: 'libraries', icon: 'FaBook', url: 'https://react-projects-13-stripe-submenus.netlify.app/products' },
+      { label: 'help', icon: 'FaBook', url: 'https://react-projects-13-stripe-submenus.netlify.app/products' },
+      { label: 'billing', icon: 'FaBook', url: 'https://react-projects-13-stripe-submenus.netlify.app/products' },
+    ],
+    columns: 4
+  },
+  {
+    page: 'company',
+    links: [
+      { label: 'about', icon: 'FaBriefcase', url: 'https://react-projects-13-stripe-submenus.netlify.app/products' },
+      { label: 'customers', icon: 'FaBriefcase', url: 'https://react-projects-13-stripe-submenus.netlify.app/products' },
+    ],
+    columns: 2
+  }
+];
+
+export const getGridClassName = (sublink, classes) => {
+  switch (sublink.columns) {
+    case 1: return classes.col_1;
+    case 2: return classes.col_2;
+    case 3: return classes.col_3;
+    case 4: return classes.col_4;
+    default: return "";
+  }
+};
+
+export const getIcon = (icon) => {
+  switch(icon) {
+    case 'FaCreditCard': return <FaCreditCard/> ;
+    case 'FaBook': return <FaBook/> ;
+    case 'FaBriefcase': return <FaBriefcase/> ;
+  }
+};

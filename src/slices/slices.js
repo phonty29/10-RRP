@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import classes from '../components/slider/Slider.module.css';
-import { reviewer_roles, reviewer_reviews, getInitialClassnamesForSlider, getNextSlider, getPrevSlider } from '../utils/utils';
+import { reviewer_roles, reviewer_reviews, getInitialClassnamesForSlider, getNextSlider, getPrevSlider, sublinks } from '../utils/utils';
 
 export const sliderSlice = createSlice({
     name: "slider",
@@ -70,3 +70,29 @@ export const groceryBudSlice = createSlice({
 });
 export const {fetchItems, editItem} = groceryBudSlice.actions;
 export const groceryBudReducer = groceryBudSlice.reducer;
+
+
+export const stripeSubmenusSlice = createSlice({
+    name: "stripeSubmenu",
+    initialState: {
+        sidebar: "",
+        submenu: {
+            sublink: sublinks[0],
+            visibility: "",
+            coordinates: {}
+        }
+    },
+    reducers: {
+        toggleSidebar: (state, action) => {
+            state.sidebar = action.payload.command;
+        },
+        toggleSubmenu: (state, action) => {
+            state.submenu.sublink = action.payload.sublink;
+            state.submenu.visibility = action.payload.visibility;
+            state.submenu.coordinates = action.payload.coordinates;
+        }
+    } 
+});
+export const {toggleSidebar, toggleSubmenu} = stripeSubmenusSlice.actions;
+export const stripeSubmenusReducer = stripeSubmenusSlice.reducer;
+

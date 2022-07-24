@@ -1,9 +1,11 @@
 import {useDispatch, useSelector} from 'react-redux';
+import {useGroceryBudContext} from './GroceryBudProvider';
 import {editItem} from '../../slices/slices';
 import {removeFirebaseItem, editFirebaseItem, fetchFirebaseItems} from '../../utils/utils';
 import classes from './GroceryBud.module.css';
 
-const GroceryBtnContainer = ({index, setAlertVisibility}) => {
+const GroceryBtnContainer = ({index}) => {
+	const {makeAlertVisible} = useGroceryBudContext();
 	const dispatch = useDispatch();
 	const buds = useSelector(state => state.groceryBud.buds);
 	const edit = (index) => {
@@ -12,7 +14,7 @@ const GroceryBtnContainer = ({index, setAlertVisibility}) => {
 	const remove = async (index) => {
 		await removeFirebaseItem(index, buds);
 		await dispatch(fetchFirebaseItems("item removed", classes.alertDanger));
-		setAlertVisibility(true);
+		makeAlertVisible();
 	};
 
 	return (

@@ -6,17 +6,19 @@ import Accordion from '../components/accordion/Accordion';
 import Slider from '../components/slider/Slider';
 import TextGenerator from '../components/textGenerator/TextGenerator';
 import GroceryBud from '../components/grocery-bud/GroceryBud';
+import StripeSubmenus from '../components/stripe-submenus/StripeSubmenus';
 import Entry from '../components/Entry';
 
 const routes = [
-	{name: 'Reqres Users', path: '/reqresUsers', element: <ReqresUsers/>, exact: true},
+	{name: 'Reqres Users', path: '/reqres-users', element: <ReqresUsers/>, exact: true},
 	{name: 'Tour Agency', path: '/tourPage', element: <TourPage/>, exact: true},
 	{name: 'Reviews', path: '/reviews', element: <Reviews/>, exact: true},
 	{name: 'Accordion', path: '/accordion', element: <Accordion/>, exact: true},
 	{name: 'Menu', path: '/menu', element: <Menu/>, exact: true},
 	{name: 'Slider', path: '/slider', element: <Slider/>, exact: true},
-	{name: 'Text Generator', path: '/textGenerator', element: <TextGenerator/>, exact: true},
-	{name: 'Grocery Bud', path: '/groceryBud', element: <GroceryBud/>, exact: true},
+	{name: 'Text Generator', path: '/text-generator', element: <TextGenerator/>, exact: true},
+	{name: 'Grocery Bud', path: '/grocery-bud', element: <GroceryBud/>, exact: true},
+	{name: 'Stripe Submenus', path: '/stripe-submenus', element: <StripeSubmenus/>, exact: true},
 	{name: 'Something else here', path: '/entry', element: <Entry/>, exact: true}
 ];
 
