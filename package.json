@@ -1,5 +1,5 @@
 {
-  "name": "redux",
+  "name": "10RR-apps",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,7 +8,7 @@
     "start": "react-scripts start"
   },
   "keywords": [],
-  "author": "",
+  "author": "Amedov Bekmuhamet amedov.bekmuhamet@gmail.com",
   "license": "ISC",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.3",

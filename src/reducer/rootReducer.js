@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
 import { SWITCH_ROUTE, REQRES_USERS_FETCHED, REQRES_USERS_CLEARED, TOURS_TWITCHED, TOURS_EMPTY, SWITCH_REVIEWER, SHOW_ALL, BREAKFAST_REMAINED, LUNCH_REMAINED, SHAKES_REMAINED } from '../actions/types.js';
-import { sliderReducer, textGeneratorReducer, groceryBudReducer, stripeSubmenusReducer } from "../slices/slices.js";
+import { sliderReducer, textGeneratorReducer, groceryBudReducer, stripeSubmenusReducer, cocktailDBReducer } from "../slices/slices.js";
 
-const routeReducer = (state = { name: 'Something else here', path: '/entry' }, action) => {
+const routeReducer = (state = { name: 'Reqres Users', path: '/reqres-users' }, action) => {
 	switch (action.type) {
 		case SWITCH_ROUTE: return {name: action.payload.name, path: action.payload.path};				
 		default: return state;
@@ -51,7 +51,8 @@ const rootReducer = combineReducers({
 	slider: sliderReducer,
 	textGenerator: textGeneratorReducer,
 	groceryBud: groceryBudReducer,
-	stripeSubmenu: stripeSubmenusReducer
+	stripeSubmenu: stripeSubmenusReducer,
+	cocktailDB: cocktailDBReducer
 });
 
 export default rootReducer;

@@ -2,18 +2,12 @@ import axios from 'axios';
 import cookies from '../cookies/cookies';
 import { FaCreditCard, FaBook, FaBriefcase } from 'react-icons/fa';
 import {reqresUsersFetched, toursTwitched, switchReviewer, showAllMenu} from '../actions/actions';
-import { sliderReviewersFetched, nextSlide, setParagraphs, fetchItems } from '../slices/slices';
+import { sliderReviewersFetched, nextSlide, setParagraphs, fetchItems, searchCocktails, selectCocktail } from '../slices/slices';
 
-export const reviewer_roles = ['web designer', 'web developer', 'intern', 'boss', 'Software developer', 'IT project managers'];
-export const reviewer_reviews = [
- 'Helvetica artisan kinfolk thundercats lumbersexual blue bottle. Disrupt glossier gastropub deep v vice franzen hell of brooklyn twee enamel pin fashion axe.photo booth jean shorts artisan narwhal.',
- 'Sriracha literally flexitarian irony, vape marfa unicorn. Glossier tattooed 8-bit, fixie waistcoat offal activated charcoal slow-carb marfa hell of pabst raclette post-ironic jianbing swag.',
- 'Edison bulb put a bird on it humblebrag, marfa pok pok heirloom fashion axe cray stumptown venmo actually seitan. VHS farm-to-table schlitz, edison bulb pop-up 3 wolf moon tote bag street art shabby chic. ',
- 'Tri-tip prosciutto pancetta, nulla irure sausage ullamco pork belly exercitation sed alcatra cillum aliqua dolor.  Id landjaeger alcatra, cupim sed kevin venison ut.  Cow tempor in exercitation',
- 'Proident corned beef leberkas. Chislic bresaola doner, ipsum eu nulla landjaeger sausage shank aliquip nostrud flank ball tip.  Pork belly leberkas jerky cillum aute qui.',
- 'The islands exceptional fertility and rainfall allowed the development of wet-field rice cultivation, which required sophisticated levels of cooperation between villages. Out of these village alliances, small kingdoms developed'
-];
+export const bodyStyle = document.body.style;
 
+
+//Reqres users
 export function getReqresUsers(page) {
 	return async function(dispatch) {
 		try {
@@ -26,8 +20,7 @@ export function getReqresUsers(page) {
 	}
 }
 
-export const bodyStyle = document.body.style;
-
+//Tours
 export function getTours() {
 	return async function(dispatch) {
 		try { 
@@ -40,6 +33,16 @@ export function getTours() {
 	}
 }
 
+//Reviewers
+export const reviewer_roles = ['web designer', 'web developer', 'intern', 'boss', 'Software developer', 'IT project managers'];
+export const reviewer_reviews = [
+ 'Helvetica artisan kinfolk thundercats lumbersexual blue bottle. Disrupt glossier gastropub deep v vice franzen hell of brooklyn twee enamel pin fashion axe.photo booth jean shorts artisan narwhal.',
+ 'Sriracha literally flexitarian irony, vape marfa unicorn. Glossier tattooed 8-bit, fixie waistcoat offal activated charcoal slow-carb marfa hell of pabst raclette post-ironic jianbing swag.',
+ 'Edison bulb put a bird on it humblebrag, marfa pok pok heirloom fashion axe cray stumptown venmo actually seitan. VHS farm-to-table schlitz, edison bulb pop-up 3 wolf moon tote bag street art shabby chic. ',
+ 'Tri-tip prosciutto pancetta, nulla irure sausage ullamco pork belly exercitation sed alcatra cillum aliqua dolor.  Id landjaeger alcatra, cupim sed kevin venison ut.  Cow tempor in exercitation',
+ 'Proident corned beef leberkas. Chislic bresaola doner, ipsum eu nulla landjaeger sausage shank aliquip nostrud flank ball tip.  Pork belly leberkas jerky cillum aute qui.',
+ 'The islands exceptional fertility and rainfall allowed the development of wet-field rice cultivation, which required sophisticated levels of cooperation between villages. Out of these village alliances, small kingdoms developed'
+];
 export function getReviewer(index) {
 	return async function(dispatch) {
 		try {
@@ -58,6 +61,7 @@ export const accordionDefaultStyle = {
 	maxHeight: 0,		
 };
 
+//Menu
 export const MENU_ITEMS = [
 	  {
     id: 1,
@@ -133,6 +137,7 @@ export const MENU_ITEMS = [
   },
 ];
 
+//Slider
 export function getReviewersForSlider() {
   return async function(dispatch) {
     try {
@@ -173,6 +178,7 @@ export function getPrevSlider(index, lastIndex, classes, array) {
   }
 };
 
+//Text Generator
 export function getBoremIpsumText(numberOfParagraphs) {
   return async function(dispatch) {
     try {
@@ -185,6 +191,7 @@ export function getBoremIpsumText(numberOfParagraphs) {
   }  
 }
 
+//Grocery Bud
 export function fetchFirebaseItems(alertMessage="", alertType="") {
   return async function(dispatch) {
     try { 
@@ -230,6 +237,7 @@ export async function clearFirebaseItems(index, array) {
     } 
 }
 
+//Stripe submenus
 export const sublinks = [
   {
     page: 'products',
@@ -277,3 +285,59 @@ export const getIcon = (icon) => {
     case 'FaBriefcase': return <FaBriefcase/> ;
   }
 };
+
+//CocktailsDB
+export const cocktailDBStyles = () => {
+      bodyStyle.backgroundColor = '#f1f5f8';
+      bodyStyle.color = '#222';
+      bodyStyle.lineHeight = '1.4';
+      bodyStyle.fontSize = '1rem';
+      bodyStyle.fontWeight = '300';  
+};
+
+export function getCocktailsDB_byName(name="") {
+  return async function(dispatch) {
+    try {
+      const response = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${name}`);
+      const drinks = response.data.drinks;
+      if (drinks == null) dispatch(searchCocktails({cocktails: [], message: "no cocktails matched your search criteria"}));
+      else dispatch(searchCocktails({cocktails: drinks, message: ""}));
+    } catch (error) {
+      console.error(error);
+    }
+  }
+} 
+
+export function getCocktailsDB_byFirstLetter(letter) {
+  return async function(dispatch) {
+    try {
+      const response = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`);
+      const drinks = response.data.drinks;
+      if (drinks == null) dispatch(searchCocktails({cocktails: [], message: "no cocktails matched your search criteria"}));
+      else dispatch(searchCocktails({cocktails: drinks, message: ""}));      
+    } catch (error) {
+      console.error(error);
+    }
+  }  
+} 
+
+export function getCocktailsDB_byId(id) {
+  return async function(dispatch) {
+    try {
+      const response = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`);
+      const drink = response.data.drinks[0];
+      dispatch(selectCocktail({cocktail: drink}));
+    } catch (error) {
+      console.error(error);
+    }
+  }   
+} 
+
+export function getIngredients(cocktail) {
+  let ingredients = [];
+  if(cocktail.strDrink) 
+    for (let key in cocktail) 
+      if (key.includes('strIngredient') && cocktail[key]) 
+        ingredients.push(cocktail[key]);
+  return ingredients;
+}

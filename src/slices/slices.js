@@ -96,3 +96,23 @@ export const stripeSubmenusSlice = createSlice({
 export const {toggleSidebar, toggleSubmenu} = stripeSubmenusSlice.actions;
 export const stripeSubmenusReducer = stripeSubmenusSlice.reducer;
 
+export const cocktailDBSlice = createSlice({
+    name: "cocktailDB",
+    initialState: {
+        page: '/cocktailDB',
+        cocktails: [],
+        message: "",
+        singleCocktail: {}
+    },
+    reducers: {
+        searchCocktails: (state, action) => {
+            state.cocktails = action.payload.cocktails;
+            state.message = action.payload.message;
+        },
+        selectCocktail: (state, action) => {
+            state.singleCocktail = action.payload.cocktail;
+        }
+    }
+});
+export const {searchCocktails, selectCocktail} = cocktailDBSlice.actions;
+export const cocktailDBReducer = cocktailDBSlice.reducer;

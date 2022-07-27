@@ -5,8 +5,10 @@ import classes from './Entry.module.css';
 const Entry = () => {
 	return (
 		<div className={classes.Entry}>
-			<Dropdown/>
-			<NavigateButton/>
+			<div className={classes.EntryCenter}>
+				<Dropdown/>
+				<NavigateButton/>	
+			</div>
 		</div>
 	);
 }
